@@ -15,10 +15,22 @@
             return Math.random();
         }
         //查找功能
-        $scope.arr=[
+        $scope.todoList=[
             {id:getId(),content:'css',status:true},
             {id:getId(),content:'javaScript',status:false},
             {id:getId(),content:'jQuery',status:false}
-        ]
+        ];
+        //输入todolist的初始值
+        $scope.todoText="";
+        //增加功能
+        $scope.addTodo=function(){
+            //判断输入框有没有值
+            if( $scope.todoText.length>0){
+                $scope.todoList.push({id:getId(),content:$scope.todoText,status:false})
+            };
+           //获取到数据之后就清空输入框的值
+            $scope.todoText="";
+        };
+
     })
 })(window);

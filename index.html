@@ -12,7 +12,12 @@
 		<section class="todoapp" ng-app="todoApp" ng-controller="todoContorller">
 			<header class="header">
 				<h1>todos</h1>
-				<input class="new-todo" placeholder="What needs to be done?" autofocus>
+
+				<form ng-submit="addTodo()">
+					<input class="new-todo" placeholder="What needs to be done?" autofocus
+					       ng-model="todoText">
+				</form>
+
 			</header>
 			<!-- This section should be hidden by default and shown when there are todos -->
 			<section class="main">
@@ -29,10 +34,10 @@
 						</div>
 						<input class="edit" value="Create a TodoMVC template">
 					</li>-->
-					<li ng-repeat="item in arr" ng-class="{'completed':item.status}">
+					<li ng-repeat="todo in todoList" ng-class="{'completed':todo.status}">
 						<div class="view">
-							<input class="toggle" type="checkbox" ng-model="item.status">
-							<label ng-bind="item.content"></label>
+							<input class="toggle" type="checkbox" ng-model="todo.status">
+							<label ng-bind="todo.content"></label>
 							<button class="destroy"></button>
 						</div>
 						<input class="edit" value="Rule the web">
