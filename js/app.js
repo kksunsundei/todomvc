@@ -7,7 +7,7 @@
     //3.创建控制器
     //4.写代码
     var app=angular.module('todoApp',[]);
-    app.controller('todoContorller',function($scope){
+    app.controller('todoContorller',['$scope','$filter',function($scope,$filter){
         //查找功能
         //每个对象,也就是todoList的每一项,应该有一个唯一的id值,内容,状态
         //获取随机id
@@ -46,7 +46,18 @@
         //点击空白区域退出修改状态
         $scope.quitEdit=function(){
             $scope.editingTodo={};
-        }
+        };
+        //剩余n项
+        //使用过滤器
+        //使用监听,第三个参数,返回更新得值
+        $scope.$watch('todoList',function(newVal,oldVal){
+            $scope.itemLeft=$filter('filter')(newVal,{'status':false}).length;
+            //console.log($filter('filter')(newVal,{'status':false}).length);
 
-    })
+        },true);
+        
+
+
+
+    }])
 })(window);
