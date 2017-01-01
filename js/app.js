@@ -55,7 +55,11 @@
             //console.log($filter('filter')(newVal,{'status':false}).length);
 
         },true);
-        
+        //清楚已完成项目
+        $scope.clearCompleted=function(){
+            $scope.todoList=$filter('filter')($scope.todoList,{'status':false});
+        }
+
 
 
 
