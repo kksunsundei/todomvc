@@ -31,6 +31,12 @@
            //获取到数据之后就清空输入框的值
             $scope.todoText="";
         };
+        //删除功能
+        $scope.deleteTodo=function(todo){
+            //保存要删除的todo的索引值
+            var index=$scope.todoList.indexOf(todo);
+            $scope.todoList.splice(index,1);
+        }
 
     })
 })(window);
