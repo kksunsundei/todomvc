@@ -36,6 +36,16 @@
             //保存要删除的todo的索引值
             var index=$scope.todoList.indexOf(todo);
             $scope.todoList.splice(index,1);
+        };
+        //双击时修改样式样式
+        //先创建1个空的对象,双击时将当前todo赋值给这个对象,从而修改当前对象的样式为正在编制中的样式
+        $scope.editingTodo={};
+        $scope.editing=function(todo){
+            $scope.editingTodo=todo;
+        };
+        //点击空白区域退出修改状态
+        $scope.quitEdit=function(){
+            $scope.editingTodo={};
         }
 
     })

@@ -34,13 +34,14 @@
 						</div>
 						<input class="edit" value="Create a TodoMVC template">
 					</li>-->
-					<li ng-repeat="todo in todoList" ng-class="{'completed':todo.status}">
+					<li ng-repeat="todo in todoList" ng-class="{'completed':todo.status,'editing':editingTodo==todo}">
 						<div class="view">
 							<input class="toggle" type="checkbox" ng-model="todo.status">
-							<label ng-bind="todo.content"></label>
+							<label ng-bind="todo.content" ng-dblclick="editing(todo)"></label>
 							<button class="destroy" ng-click="deleteTodo(todo)"></button>
 						</div>
-						<input class="edit" value="Rule the web">
+						<input class="edit" value="Rule the web" ng-model="todo.content"
+						       ng-blur="quitEdit()">
 					</li>
 					<!-- focus的状态,class为editing-->
 					<!--<li class="editing">
