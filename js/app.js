@@ -60,6 +60,9 @@
             //9.显示与隐藏clearCompleted
             $scope.isShowClearCompleted=$filter('filter')(newVal,{'status':true}).length>0?true:false;
 
+            //10.显示与隐藏footer
+            $scope.isShowFooter=$scope.todoList.length>0?true:false;
+
         },true);
         //7.清楚已完成项目
         $scope.clearCompleted=function(){
