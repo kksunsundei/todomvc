@@ -35,7 +35,8 @@
 						</div>
 						<input class="edit" value="Create a TodoMVC template">
 					</li>-->
-					<li ng-repeat="todo in todoList" ng-class="{'completed':todo.status,'editing':editingTodo==todo}">
+					<li ng-repeat="todo in todoList | filter:statusFilter"
+					    ng-class="{'completed':todo.status,'editing':editingTodo==todo}">
 						<div class="view">
 							<input class="toggle" type="checkbox" ng-model="todo.status">
 							<label ng-bind="todo.content" ng-dblclick="editing(todo)"></label>
@@ -62,13 +63,18 @@
 				<!-- Remove this if you don't implement routing -->
 				<ul class="filters">
 					<li>
-						<a class="selected" href="#/">All</a>
+						<a ng-class="{'selected':statusFilter.status==undefined}"
+						   ng-click="changeStatus('all')" class="selected"
+						   href="#/">All
+						</a>
 					</li>
 					<li>
-						<a href="#/active">Active</a>
+						<a ng-class="{'selected':statusFilter.status==false}"
+						   ng-click="changeStatus('active')" href="#/active">Active</a>
 					</li>
 					<li>
-						<a href="#/completed">Completed</a>
+						<a ng-class="{'selected':statusFilter.status==true}"
+						   ng-click="changeStatus('completed')" href="#/completed">Completed</a>
 					</li>
 				</ul>
 				<!-- Hidden if no completed items are left ↓ -->

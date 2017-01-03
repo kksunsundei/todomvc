@@ -76,6 +76,21 @@
             })
         };
 
+        //11.状态切换
+        $scope.statusFilter={};
+        $scope.changeStatus=function(status){
+            switch(status){
+                case 'active':
+                    $scope.statusFilter={status:false};
+                    break;
+                case 'completed':
+                    $scope.statusFilter={status:true};
+                    break;
+                default:
+                    $scope.statusFilter={};
+            }
+        }
+
 
 
 
