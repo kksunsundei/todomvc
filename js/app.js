@@ -57,6 +57,9 @@
             //和itemLeft的值是反着的,剩余0项时,证明全部完成,那toggleAll应该是true
             $scope.toggleAll=!$scope.itemLeft;
 
+            //9.显示与隐藏clearCompleted
+            $scope.isShowClearCompleted=$filter('filter')(newVal,{'status':true}).length>0?true:false;
+
         },true);
         //7.清楚已完成项目
         $scope.clearCompleted=function(){
@@ -68,7 +71,8 @@
             $scope.todoList.forEach(function(item){
                 item.status=$scope.toggleAll;
             })
-        }
+        };
+
 
 
 
