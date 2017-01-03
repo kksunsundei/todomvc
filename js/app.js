@@ -1,64 +1,75 @@
 (function (window) {
 	'use strict';
-    //ÒªÍê³ÉµÄ¹¦ÄÜ:ÔöÉ¾¸Ä²é
+    //è¦å®Œæˆçš„åŠŸèƒ½:å¢åˆ æ”¹æŸ¥
 
-    //1.ÏÈÒı°ü
-    //2.´´½¨Ä£¿é
-    //3.´´½¨¿ØÖÆÆ÷
-    //4.Ğ´´úÂë
+    //1.å…ˆå¼•åŒ…
+    //2.åˆ›å»ºæ¨¡å—
+    //3.åˆ›å»ºæ§åˆ¶å™¨
+    //4.å†™ä»£ç 
     var app=angular.module('todoApp',[]);
     app.controller('todoContorller',['$scope','$filter',function($scope,$filter){
-        //²éÕÒ¹¦ÄÜ
-        //Ã¿¸ö¶ÔÏó,Ò²¾ÍÊÇtodoListµÄÃ¿Ò»Ïî,Ó¦¸ÃÓĞÒ»¸öÎ¨Ò»µÄidÖµ,ÄÚÈİ,×´Ì¬
-        //»ñÈ¡Ëæ»úid
+        //æŸ¥æ‰¾åŠŸèƒ½
+        //æ¯ä¸ªå¯¹è±¡,ä¹Ÿå°±æ˜¯todoListçš„æ¯ä¸€é¡¹,åº”è¯¥æœ‰ä¸€ä¸ªå”¯ä¸€çš„idå€¼,å†…å®¹,çŠ¶æ€
+        //è·å–éšæœºid
         function getId(){
             return Math.random();
         }
-        //²éÕÒ¹¦ÄÜ
+        //1.æŸ¥æ‰¾åŠŸèƒ½
         $scope.todoList=[
             {id:getId(),content:'css',status:true},
             {id:getId(),content:'javaScript',status:false},
             {id:getId(),content:'jQuery',status:false}
         ];
-        //ÊäÈëtodolistµÄ³õÊ¼Öµ
+        //è¾“å…¥todolistçš„åˆå§‹å€¼
         $scope.todoText="";
-        //Ôö¼Ó¹¦ÄÜ
+        //2.å¢åŠ åŠŸèƒ½
         $scope.addTodo=function(){
-            //ÅĞ¶ÏÊäÈë¿òÓĞÃ»ÓĞÖµ
+            //åˆ¤æ–­è¾“å…¥æ¡†æœ‰æ²¡æœ‰å€¼
             if( $scope.todoText.length>0){
                 $scope.todoList.push({id:getId(),content:$scope.todoText,status:false})
             };
-           //»ñÈ¡µ½Êı¾İÖ®ºó¾ÍÇå¿ÕÊäÈë¿òµÄÖµ
+           //è·å–åˆ°æ•°æ®ä¹‹åå°±æ¸…ç©ºè¾“å…¥æ¡†çš„å€¼
             $scope.todoText="";
         };
-        //É¾³ı¹¦ÄÜ
+        //3.åˆ é™¤åŠŸèƒ½
         $scope.deleteTodo=function(todo){
-            //±£´æÒªÉ¾³ıµÄtodoµÄË÷ÒıÖµ
+            //ä¿å­˜è¦åˆ é™¤çš„todoçš„ç´¢å¼•å€¼
             var index=$scope.todoList.indexOf(todo);
             $scope.todoList.splice(index,1);
         };
-        //Ë«»÷Ê±ĞŞ¸ÄÑùÊ½ÑùÊ½
-        //ÏÈ´´½¨1¸ö¿ÕµÄ¶ÔÏó,Ë«»÷Ê±½«µ±Ç°todo¸³Öµ¸øÕâ¸ö¶ÔÏó,´Ó¶øĞŞ¸Äµ±Ç°¶ÔÏóµÄÑùÊ½ÎªÕıÔÚ±àÖÆÖĞµÄÑùÊ½
+        //4.åŒå‡»æ—¶ä¿®æ”¹æ ·å¼æ ·å¼
+        //å…ˆåˆ›å»º1ä¸ªç©ºçš„å¯¹è±¡,åŒå‡»æ—¶å°†å½“å‰todoèµ‹å€¼ç»™è¿™ä¸ªå¯¹è±¡,ä»è€Œä¿®æ”¹å½“å‰å¯¹è±¡çš„æ ·å¼ä¸ºæ­£åœ¨ç¼–åˆ¶ä¸­çš„æ ·å¼
         $scope.editingTodo={};
         $scope.editing=function(todo){
             $scope.editingTodo=todo;
         };
-        //µã»÷¿Õ°×ÇøÓòÍË³öĞŞ¸Ä×´Ì¬
+        //5.ç‚¹å‡»ç©ºç™½åŒºåŸŸé€€å‡ºä¿®æ”¹çŠ¶æ€
         $scope.quitEdit=function(){
             $scope.editingTodo={};
         };
-        //Ê£ÓànÏî
-        //Ê¹ÓÃ¹ıÂËÆ÷
-        //Ê¹ÓÃ¼àÌı,µÚÈı¸ö²ÎÊı,·µ»Ø¸üĞÂµÃÖµ
+        //6.å‰©ä½™né¡¹
+        //ä½¿ç”¨è¿‡æ»¤å™¨
+        //ä½¿ç”¨ç›‘å¬,ç¬¬ä¸‰ä¸ªå‚æ•°,è¿”å›æ›´æ–°å¾—å€¼
         $scope.$watch('todoList',function(newVal,oldVal){
             $scope.itemLeft=$filter('filter')(newVal,{'status':false}).length;
-            //console.log($filter('filter')(newVal,{'status':false}).length);
+
+            //8.å…¨é€‰çŠ¶æ€
+            //å’ŒitemLeftçš„å€¼æ˜¯åç€çš„,å‰©ä½™0é¡¹æ—¶,è¯æ˜å…¨éƒ¨å®Œæˆ,é‚£toggleAllåº”è¯¥æ˜¯true
+            $scope.toggleAll=!$scope.itemLeft;
 
         },true);
-        //Çå³şÒÑÍê³ÉÏîÄ¿
+        //7.æ¸…æ¥šå·²å®Œæˆé¡¹ç›®
         $scope.clearCompleted=function(){
             $scope.todoList=$filter('filter')($scope.todoList,{'status':false});
         }
+
+        //8.å…¨é€‰æŒ‰é’®
+        $scope.changeToggleAll=function(){
+            $scope.todoList.forEach(function(item){
+                item.status=$scope.toggleAll;
+            })
+        }
+
 
 
 
